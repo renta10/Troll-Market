@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>merhandise</title>
+    <link rel="stylesheet" th:href="@{/styleNav.css}">
+</head>
+<body>
+<nav th:replace="~{template.html :: navigation}"></nav>
+
+    <div class="form-merchandise-container">
+
+        <form class="form-merchandise" th:action="@{/merchandise/saveProduct}" th:object="${addProduct}" method="post">
+
+            <div>
+                <label></label>
+                <input type="hidden" th:field="*{id}">
+            </div>
+
+           <div>
+               <label class="column-form-merchandise" > Name</label>
+               <input type="text" th:field="*{productName}">
+           </div>
+
+            <div>
+                <label class="column-form-merchandise"  >Category</label>
+                <input type="text" th:field="*{category}">
+            </div>
+
+            <div class="description">
+                <label class="column-form-merchandise"  >Description</label>
+                <textarea th:field="*{description}"></textarea>
+            </div>
+
+           <div>
+               <label class="column-form-merchandise"  > Price</label>
+               <input type="number" th:field="*{price}">
+           </div>
+
+            <div>
+                <label class="column-form-merchandise"  > Discontinue</label>
+                <input type="checkbox" th:field="*{status}">
+            </div>
+
+            <div >
+                <button type="submit">Save</button>
+            </div>
+
+        </form>
+           <a th:href="@{/merchandise/showProduct(principal.Username)}"> <button class="button-Cancel">cancel</button></a>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>shop</title>
+  <link rel="stylesheet" th:href="@{/styleNav.css}">
+</head>
+<body>
+  <nav th:replace="~{template.html :: navigation}"></nav>
+
+  <div>
+    <form th:action="@{/shop/shopIndex}">
+
+      <div>
+        <label>Name</label>
+        <input name="key1">
+      </div>
+
+      <div>
+        <label>Category</label>
+        <input name="key2">
+      </div>
+
+      <div>
+        <label>Description</label>
+        <input name="key3">
+      </div>
+      <button type="submit">Search</button>
+    </form>
+
+  </div>
+
+  <div>
+    <table class="tabel-Product">
+      <thead>
+      <tr>
+        <th> </th>
+        <th>Name</th>
+        <th>Price</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:if="${allProduct.isEmpty}">
+        <td>no data availabel</td>
+      </tr>
+      <tr th:unless="${allProduct.isEmpty}" th:each="d : ${allProduct}" >
+        <td>
+
+          <span class="button-merchandise">
+            <a th:href="@{/merchandise/infoProduct(id=${d.id})}">
+              <button class="info"> Info </button>
+            </a>
+          </span>
+
+          <span class="button-merchandise">
+            <a><button>Add to Chart</button></a>
+          </span>
+
+        </td>
+        <td class="cap" th:text="${d.name}"></td>
+        <td class="cap" th:text="${d.price}"></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+  <div class="info-container">
+    <div>
+      <span class="spanInfo" >Name</span>
+      <span></span>
+    </div>
+    <div>
+      <span class="spanInfo" >Category</span>
+      <span></span>
+    </div>
+
+    <div>
+      <span class="spanInfo" >Description</span>
+      <span></span>
+    </div>
+
+    <div>
+      <span class="spanInfo" >Price</span>
+      <span></span>
+    </div>
+
+    <button class="cancel">cancel</button>
+  </div>
+
+
+  <script>
+
+    async function getData(url) {
+
+      const response = await fetch(url);
+      const data = await response.json();
+      const infoContainer = document.querySelector(".info-container");
+
+      infoContainer.style.transform = "scale(1)";
+
+      let cancel = document.querySelector(".cancel")
+      cancel.onclick = function (){
+        infoContainer.style.transform = "scale(0)";
+      }
+
+      infoContainer.children[0].children[1].textContent = data.name;
+      infoContainer.children[1].children[1].textContent = data.category;
+      infoContainer.children[2].children[1].textContent = data.description;
+      infoContainer.children[3].children[1].textContent = data.price;
+
+    }
+
+    const btnInfo = document.querySelectorAll(".info");
+    if (btnInfo != null) {
+      btnInfo.forEach(btn => {
+        btn.addEventListener("click", (e) => {
+          e.preventDefault(); //  supaya pas di click  tidak web tidak me reaload
+          const url = btn.parentElement.href;
+          getData(url)
+        })
+      })
+
+    }
+
+  </script>
+
+</body>
+</html>

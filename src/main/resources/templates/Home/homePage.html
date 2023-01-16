@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <title>homePage</title>
+    <link rel="stylesheet" th:href="@{/styleNav.css}">
+</head>
+<body>
+    <nav th:replace="~{template.html :: navigation}"></nav>
+    <div class="home-main">
+        <p>Selamat datang di Troll Market</p>
+        <p>Ini adalah market place yang tidak pernah ada promosi dan diskon.</p>
+        <p>Karena ini hanya assignment buat kalian, jadi buat apa ada diskon</p>
+    </div>
+</body>
+</html>

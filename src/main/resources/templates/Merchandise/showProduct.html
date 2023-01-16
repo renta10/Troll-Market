@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>showProduct</title>
+    <link rel="stylesheet" th:href="@{/styleNav.css}">
+
+</head>
+<body>
+    <nav th:replace="~{template.html :: navigation}"></nav>
+
+    <div class="profile-container">
+
+        <div>
+            <div class="button-merchandise">
+               <a  th:href="@{/merchandise/addProduct}" th:method="post" > <button>  Add Product </button> </a>
+            </div>
+
+        </div>
+
+        <div>
+            <table class="tabel-Product">
+                <thead>
+                <tr>
+                    <th> </th>
+                    <th>Name</th>
+                    <th>Category</th>
+                    <th>Discontinue</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:if="${showProduct.isEmpty}">
+                    <td>no data availabel</td>
+                </tr>
+                <tr th:unless="${showProduct.isEmpty}" th:each="d : ${showProduct}" >
+                    <td>
+                        <span class="button-merchandise">
+                            <a th:href="@{/merchandise/editProduct(id=${d.id})}"> <button>Edit</button></a>
+                        </span>
+
+                        <span class="button-merchandise">
+                            <a th:href="@{/merchandise/deleteProduct(id=${d.id})}"> <button> Delete </button> </a>
+                        </span>
+
+                        <span class="button-merchandise">
+                            <a th:href="@{/merchandise/infoProduct(id=${d.id})}">
+                                <button class="info"> Info </button>
+                            </a>
+                        </span>
+
+                        <span class="button-merchandise">
+                            <a><button>Discontinue</button></a>
+                        </span>
+
+                    </td>
+                    <td class="cap" th:text="${d.name}"></td>
+                    <td class="cap" th:text="${d.category}"></td>
+                    <td class="cap" th:text="${d.status}?'Yes':'No'"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+        <div class="info-container">
+            <div>
+                <span class="spanInfo" >Name</span>
+                <span></span>
+            </div>
+            <div>
+                <span class="spanInfo" >Category</span>
+                <span></span>
+            </div>
+
+            <div>
+                <span class="spanInfo" >Description</span>
+                <span></span>
+            </div>
+
+            <div>
+                <span class="spanInfo" >Price</span>
+                <span></span>
+            </div>
+
+            <div>
+                <span class="spanInfo" >Discontinue</span>
+                <span></span>
+            </div>
+            <button class="cancel">cancel</button>
+        </div>
+
+    </div>
+
+
+<script>
+
+    async function getData(url, toggle) {
+
+        const response = await fetch(url);
+        const data = await response.json();
+        const infoContainer = document.querySelector(".info-container");
+
+        if (toggle) {
+            infoContainer.style.transform = "scale(1)";
+        } else {
+            infoContainer.style.transform = "scale(0)";
+        }
+
+        let cancel = document.querySelector(".cancel")
+        cancel.onclick = function (){
+            infoContainer.style.transform = "scale(0)";
+        }
+
+        infoContainer.children[0].children[1].textContent = data.name;
+        infoContainer.children[1].children[1].textContent = data.category;
+        infoContainer.children[2].children[1].textContent = data.description;
+        infoContainer.children[3].children[1].textContent = data.price;
+        infoContainer.children[4].children[1].textContent = data.discontinue ? "Yes" : "No";
+
+    }
+
+    let toggle = true;
+    const btnInfo = document.querySelectorAll(".info");
+    if (btnInfo != null) {
+        btnInfo.forEach(btn => {
+            btn.addEventListener("click", (e) => {
+                e.preventDefault(); //  supaya pas di click  tidak web tidak me reaload
+                const url = btn.parentElement.href;
+
+                console.log(toggle);
+                getData(url, toggle)
+                toggle = !toggle;
+
+            })
+        })
+
+    }
+
+</script>
+
+</body>
+</html>

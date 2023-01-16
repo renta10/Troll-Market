@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>showShipment</title>
+    <link rel="stylesheet" th:href="@{/styleNav.css}">
+</head>
+<body>
+    <nav th:replace="~{template.html :: navigation}"></nav>
+
+<div class="profile-container">
+
+    <div>
+        <div class="button-merchandise">
+            <a  th:href="@{/shipment/addShipment}" th:method="post" > <button>  Add Shipment </button> </a>
+        </div>
+
+    </div>
+
+    <div>
+        <table class="tabel-Product">
+            <thead>
+            <tr>
+                <th> </th>
+                <th>Shipment Name</th>
+                <th>Price</th>
+                <th>Service</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:if="${shipmentShow.isEmpty}">
+                <td>no data availabel</td>
+            </tr>
+            <tr th:unless="${shipmentShow.isEmpty}" th:each="d : ${shipmentShow}" >
+                <td>
+                        <span class="button-merchandise">
+                            <a th:href="@{/shipment/editShipment(id=${d.id})}"> <button>Edit</button></a>
+                        </span>
+
+                    <span class="button-merchandise">
+                            <a th:href="@{/shipment/deleteShipment(id=${d.id})}"> <button> Delete </button> </a>
+                        </span>
+
+                    <span class="button-merchandise">
+                            <a><button>Discontinue</button></a>
+                        </span>
+
+                </td>
+                <td class="cap" th:text="${d.shipmentName}"></td>
+                <td class="cap" th:text="${d.price}"></td>
+                <td class="cap" th:text="${d.service}?'Yes':'No'"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+    <div class="info-container">
+        <div>
+            <span class="spanInfo" >Name</span>
+            <span></span>
+        </div>
+        <div>
+            <span class="spanInfo" >Category</span>
+            <span></span>
+        </div>
+
+        <div>
+            <span class="spanInfo" >Description</span>
+            <span></span>
+        </div>
+
+        <div>
+            <span class="spanInfo" >Price</span>
+            <span></span>
+        </div>
+
+        <div>
+            <span class="spanInfo" >Discontinue</span>
+            <span></span>
+        </div>
+        <button class="cancel">cancel</button>
+    </div>
+
+</div>
+
+</body>
+</html>

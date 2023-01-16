@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <title>template</title>
+    <link rel="stylesheet" th:href="@{/styleNav.css}">
+</head>
+<body>
+  <nav th:fragment="navigation">
+
+      <div class="nav-template">
+          <div class="column200px">TROLL MARKET</div>
+          <div class="navigasi-1">
+              <a th:href="@{/}">Home</a>
+              <a th:href="@{/profile/showProfile}" sec:authorize="hasAnyAuthority('Seller','Buyer')">Profile</a>
+              <a th:href="@{/shop/shopIndex}" sec:authorize="hasAuthority('Buyer')">Shop</a>
+              <a th:href="@{/merchandise/showProduct(principal.Username)}" sec:authorize="hasAuthority('Seller')">Merchandise</a>
+              <a th:href="@{/shipment/showShipment}" sec:authorize="hasAuthority('Administrator')">Shipment</a>
+              <a th:href="@{/}" sec:authorize="hasAuthority('Buyer')">My Cart</a>
+              <a th:href="@{/}" sec:authorize="hasAuthority('Administrator')">Admin</a>
+              <a th:href="@{/}" sec:authorize="hasAuthority('Administrator')">History</a>
+          </div>
+          <div class="profile column200px">
+
+              <div class="profile-flex">
+                  <span th:text="Welcome + ' ' + ${#authentication.name}"></span>
+
+                  <form th:action="@{/logout}" method="post">
+                      <button class="material-symbols-outlined" type="submit">logout</button>
+                  </form>
+
+              </div>
+          </div>
+      </div>
+
+
+  </nav>
+</body>
+</html>
