@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name ="OrderTable")
-public class Order{
+public class  Order{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 

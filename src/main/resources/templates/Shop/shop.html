@@ -53,7 +53,7 @@
           </span>
 
           <span class="button-merchandise">
-            <a><button>Add to Chart</button></a>
+            <a  th:href="@{cart/addtoCart(id=${d.id})}"><button>Add to Chart</button></a>
           </span>
 
         </td>
@@ -63,6 +63,25 @@
       </tbody>
     </table>
   </div>
+
+  <form class="form-merchandise" th:action="@{/cart/saveCart}" th:object="${cart}" method="post">
+
+    <div>
+      <label></label>
+      <input type="hidden" th:field="*{id}">
+    </div>
+
+
+    <div>
+      <label class="column-form-merchandise"  >Category</label>
+      <input type="hidden" th:field="*{productId}">
+    </div>
+
+    <div >
+      <button type="submit">Save</button>
+    </div>
+
+  </form>
 
 
   <div class="info-container">

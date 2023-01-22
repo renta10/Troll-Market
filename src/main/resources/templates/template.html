@@ -16,7 +16,7 @@
               <a th:href="@{/}">Home</a>
               <a th:href="@{/profile/showProfile}" sec:authorize="hasAnyAuthority('Seller','Buyer')">Profile</a>
               <a th:href="@{/shop/shopIndex}" sec:authorize="hasAuthority('Buyer')">Shop</a>
-              <a th:href="@{/merchandise/showProduct(principal.Username)}" sec:authorize="hasAuthority('Seller')">Merchandise</a>
+              <a th:href="@{/merchandise/showProduct(principal.Username)}" sec:authori ze="hasAuthority('Seller')">Merchandise</a>
               <a th:href="@{/shipment/showShipment}" sec:authorize="hasAuthority('Administrator')">Shipment</a>
               <a th:href="@{/}" sec:authorize="hasAuthority('Buyer')">My Cart</a>
               <a th:href="@{/}" sec:authorize="hasAuthority('Administrator')">Admin</a>

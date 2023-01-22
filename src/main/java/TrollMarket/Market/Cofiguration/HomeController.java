@@ -10,7 +10,6 @@ import java.security.Principal;
 @RequestMapping("/home")
 public class HomeController {
 
-
     @GetMapping("/homePage")
     public String homePage(){
         return "Home/homePage";

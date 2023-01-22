@@ -4,14 +4,14 @@ package TrollMarket.Market.Dto;
 public class CartDto {
     private Integer id;
     private Integer quantity;
-    private Integer buyerId;
+    private String buyerId;
     private Integer productId;
     private Integer shipmentId;
 
     public CartDto() {
     }
 
-    public CartDto(Integer id, Integer quantity, Integer buyerId, Integer productId, Integer shipmentId) {
+    public CartDto(Integer id, Integer quantity, String buyerId, Integer productId, Integer shipmentId) {
         this.id = id;
         this.quantity = quantity;
         this.buyerId = buyerId;
@@ -35,11 +35,11 @@ public class CartDto {
         this.quantity = quantity;
     }
 
-    public Integer getBuyerId() {
+    public String getBuyerId() {
         return buyerId;
     }
 
-    public void setBuyerId(Integer buyerId) {
+    public void setBuyerId(String buyerId) {
         this.buyerId = buyerId;
     }
 
