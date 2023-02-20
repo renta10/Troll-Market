@@ -1,12 +1,13 @@
 package TrollMarket.Market.Dto;
 
-public class BuyerDtoShow {
+import javax.validation.constraints.NotNull;
 
+public class BuyerDtoShow {
+    @NotNull(message = "tidak boleh kosong")
     private String fullName;
     private String address;
     private String phoneNUmber;
     private double wallet;
-
     public BuyerDtoShow() {
     }
 

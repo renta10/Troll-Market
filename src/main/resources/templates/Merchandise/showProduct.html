@@ -123,14 +123,13 @@
     const btnInfo = document.querySelectorAll(".info");
     if (btnInfo != null) {
         btnInfo.forEach(btn => {
+
             btn.addEventListener("click", (e) => {
                 e.preventDefault(); //  supaya pas di click  tidak web tidak me reaload
                 const url = btn.parentElement.href;
-
                 console.log(toggle);
                 getData(url, toggle)
                 toggle = !toggle;
-
             })
         })
 

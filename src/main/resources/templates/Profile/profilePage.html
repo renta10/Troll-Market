@@ -10,47 +10,50 @@
 </head>
 
 <body>
-<nav th:replace="~{template.html :: navigation}"> </nav>
+    <nav th:replace="~{template.html :: navigation}"> </nav>
 
-<div th:object="${user}">
-    <div class="profile-main">
-        <div>
-            <span class="column100px">Name </span>
-            <span th:text="*{name}"></span>
+    <div th:object="${user}">
+        <div class="profile-main">
+            <div>
+                <span class="column100px">Name </span>
+                <span th:text="*{name}"></span>
+            </div>
+
+            <div>
+                <span class="column100px">Role </span>
+                <span th:text="*{role}" ></span>
+            </div>
+
+            <div>
+                <span class="column100px">Address </span>
+                <span th:text="*{address}"></span>
+            </div>
+
+            <div>
+                <span class="column100px">Balance </span>
+
+                <span>
+                    <span th:text="*{balance}"></span>
+                    <button sec:authorize="hasAuthority('Buyer')" id="addBalanceButton"> Tambah dana</button>
+                </span>
+
+            </div>
         </div>
 
-        <div>
-            <span class="column100px">Role </span>
-            <span th:text="*{role}" ></span>
+        <div class="popUp-main" id="modal" >
+            <div class="headTamabahDana">Tambah Dana </div>
+            <form class="popUp" th:action="@{/profile/addBalance}" method="post">
+
+                <div class="errorMassage" th:text="${error}"></div>
+                <input class="addbalancess" type="number" name="addbalances">
+
+            <div class="buttonPoup">
+                <button type="submit">Tambah</button>
+            </div>
+            </form>
+                 <button id="cancel">Cancel</button>
         </div>
 
-        <div>
-            <span class="column100px">Address </span>
-            <span th:text="*{address}"></span>
-        </div>
-
-        <div>
-            <span class="column100px">Balance </span>
-
-            <span>
-                <span th:text="*{balance}"></span>
-                <button sec:authorize="hasAuthority('Buyer')" id="addBalanceButton"> Tambah dana</button>
-            </span>
-
-        </div>
     </div>
-
-    <div class="popUp-main" id="modal" >
-        <div class="headTamabahDana">Tambah Dana </div>
-        <form class="popUp" th:action="@{/profile/addBalance}" method="post">
-            <input  type="number" name="addbalances">
-        <div class="buttonPoup">
-            <button type="submit">Tambah</button>
-        </div>
-        </form>
-             <button id="cancel">Cancel</button>
-    </div>
-
-</div>
 </body>
 </html>

@@ -7,11 +7,15 @@
 </head>
 <body>
     <form class="form" th:action="@{/authenticateTheUser}" method="post">
-<!--        <div class="error" th:if="${param.error}">Invalid username & password</div>-->
-        <div th:text="${session.SPRING_SECURITY_LAST_EXCEPTION?.message}" class="text-red-700"></div>
+<!--    <div class="error" th:if="${param.error}">Invalid username & password</div>-->
+
+        <div th:text="${session.SPRING_SECURITY_LAST_EXCEPTION?.message}" class="errorMassage"></div>
+        <h2>Log In</h2>
+
         <label>
             <input type="text" name="username" placeholder="User Name">
         </label>
+
         <label>
             <input type="password" name="password" placeholder="Password">
         </label>
@@ -25,9 +29,9 @@
        </label>
 
             <button class="btn-login" type="submit">Login</button>
-            <a class="linka" th:href="@{/account/addAccount(role='Buyer')}">click here to register as Buyer</a>
-             <a class="linka" th:href="@{/account/addAccount(role='Seller')}">click here to register as Seller</a>
-             <a class="linka" th:href="@{/account/addAccountAdmin(role='Administrator')}">click here to register as ADMIN</a>
+            <a class="linka" th:href="@{/account/addAccount(role='Buyer')}">Register as Buyer</a>
+            <a class="linka" th:href="@{/account/addAccount(role='Seller')}">Register as Seller</a>
+            <a class="linka" th:href="@{/account/addAccountAdmin(role='Administrator')}">Register as Admin</a>
 
     </form>
 </body>

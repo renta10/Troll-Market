@@ -1,18 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Rubik&display=swap');
+
 *{
-    color: white;
+    color: black;
+    font-family: 'Montserrat', sans-serif;
+    font-family: 'Rubik', sans-serif;
 }
 body{
     width: 700px;
-    height: 1000px;
-    border: black 5px solid;
     margin: 0 auto;
-    background-color: #16213E;
+    /*background-image:url("Gambar/blob-scene-haikei.png");*/
 }
 .form{
     border: black 2px solid;
+    border-radius: 20px;
     display: flex;
     flex-direction: column;
-    margin: 50px auto;
+    margin: 140px auto;
     row-gap: 10px;
     width: 400px;
     align-items: center;
@@ -22,18 +25,18 @@ body{
      width: 200px;
      border-radius: 15px;
      padding-left: 10px;
-     background-color: #2c4d96;
+     /*background-color: #2c4d96;*/
 
 }
  input[type="text"]::-webkit-input-placeholder,input[type="password"]::-webkit-input-placeholder{
-     color: white;
+     color: black;
  }
  label > textarea{
      color: black;
  }
 
 input[type="password"]::-webkit-input-placeholder{
-    color: white;
+    color: black;
 }
 
  label > select{
@@ -41,7 +44,7 @@ input[type="password"]::-webkit-input-placeholder{
      width: 216px;
      border-radius: 15px;
      text-align: center;
-     background-color: #2c4d96;
+     /*background-color: #2c4d96;*/
  }
 .btn-login{
    height: 30px;
@@ -50,7 +53,11 @@ input[type="password"]::-webkit-input-placeholder{
     background-color: #E94560;
 
 }
-
+.errorMassage{
+    color: red;
+    margin: 10px;
+    font-weight: bolder;
+}
 .role-1{
     display: flex;
     flex-direction: column;
@@ -58,6 +65,6 @@ input[type="password"]::-webkit-input-placeholder{
 }
 .linka{
     text-decoration: none;
-    color: white;
+    color: black;
 }
 

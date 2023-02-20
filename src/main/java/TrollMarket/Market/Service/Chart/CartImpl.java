@@ -18,13 +18,10 @@ import java.util.List;
 public class CartImpl implements CartService {
     @Autowired
     BuyerRepository buyerRepository;
-
     @Autowired
     SellerRepository sellerRepository;
-
     @Autowired
     CartRepository cartRepository;
-
     @Autowired
     ShipmentRepository shipmentRepository;
     @Autowired
@@ -37,30 +34,31 @@ public class CartImpl implements CartService {
         Buyer buyer = buyerRepository.findByAccount_UserName(username);
         Product product = productRepository.findById(cartDto.getProductId()).get();
         Shipment shipment = shipmentRepository.findById(cartDto.getShipmentId()).get();
-        Chart chart = cartRepository.findByProductIdAndBuyer_Account_UserNameAndShipmentId(cartDto.getProductId(),username,cartDto.getShipmentId()).orElseThrow(null);
-        if (chart == null){
-            chart = new Chart(
-                    cartDto.getId(),
+        System.out.println(shipment);
+        try{
+           Chart chart = new Chart(
+                   cartDto.getId(),
                     cartDto.getQuantity(),
                     buyer,
                     product,
                     shipment
             );
+            System.out.println("masuk");
+            System.out.println(shipment);
             cartRepository.save(chart);
-        }else {
+        }catch (Exception e){
             throw new SomethingWrong("cannot save this product to cart");
         }
-
     }
 
-    @Override
-    public List<CartDtoShow> cartDtoShow() {
-        try{
-            return  cartRepository.listCart();
-        }catch (Exception e){
-            throw new SomethingWrong("there's no data");
-        }
-    }
+//    @Override
+//    public List<CartDtoShow> cartDtoShow(String username) {
+//        try{
+//            return cartRepository.listCart(username);
+//        }catch (Exception e){
+//            throw new SomethingWrong("there's no data");
+//        }
+//    }
 
     @Override
     public void deleteCart(Integer id) {

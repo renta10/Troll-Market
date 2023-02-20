@@ -23,9 +23,7 @@ public class Chart {
     @ManyToOne
     @JoinColumn(name = "Shipment_ID")
     Shipment shipment;
-    @ManyToOne
-    @JoinColumn(name = "OrderId")
-    private Order order;
+
 
     public Chart() {
     }
@@ -38,14 +36,13 @@ public class Chart {
         this.shipment = shipment;
     }
 
-    public Chart(Integer idChart, Integer quantity,  Buyer buyer, Product product, Shipment shipment, Order order) {
-        this.idChart = idChart;
+    public Chart(Integer quantity, Buyer buyer, Product product, Shipment shipment) {
         this.quantity = quantity;
         this.buyer = buyer;
         this.product = product;
         this.shipment = shipment;
-        this.order = order;
     }
+
 
     public Integer getIdChart() {
         return idChart;
@@ -78,14 +75,6 @@ public class Chart {
 
     public void setProduct(Product product) {
         this.product = product;
-    }
-
-    public Order getOrder() {
-        return order;
-    }
-
-    public void setOrder(Order order) {
-        this.order = order;
     }
 
     public Shipment getShipment() {

@@ -6,7 +6,7 @@ body{
     border: 5px black solid;
     height: 1000px;
     background-color: #ECE8DD;
-    /*background-image:url("Gambar/Sukuna.jpg");*/
+    /*background-image:url("Gambar/blob-scene-haikei.png");*/
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -24,9 +24,15 @@ body{
     box-shadow: 1px 1px 13px 0;
 
 }
+
+* button{
+    border-radius: 10px;
+    background-color: #1F8A70;
+    color: #ECE8DD;
+}
+
 .profile{
     display: flex;
-
     gap: 10px;
 }
 .navigasi-1{
@@ -72,6 +78,30 @@ a{
 .column100px {
     display: inline-block;
     width: 85px;
+    margin: 5px;
+}
+
+#addBalanceButton{
+    margin-left: 10px;
+    border-radius: 10px;
+    background-color: #1F8A70;
+    color: #ECE8DD;
+}
+
+.addbalancess{
+    border-radius: 10px;
+    padding: 5px;
+    -webkit-appearance: none;
+}
+
+#cancel{
+    display: inline-block;
+    position: absolute;
+    top: 125px;
+    margin-left: 13px;
+    border-radius: 10px;
+    background-color: #1F8A70;
+    color: #ECE8DD;
 }
 .popUp-main{
     border: gray 2px solid;
@@ -229,4 +259,41 @@ tr:nth-child(odd){
 }
 .info-container> div >.spanInfo{
     width: 200px;
+}
+
+.AddToCart{
+    border: 2px solid black;
+    transform: scale(0);
+    transition: .3s;
+    width: 400px;
+    height: 150px;
+    margin: 0 auto;
+    border-radius: 10px;
+    padding: 10px;
+    position: absolute;
+    top: 290px;
+    left: 32%;
+    background-color: #16213E;
+    color: white;
+}
+.popUPCart{
+    display: inline-block;
+    width: 100px;
+}
+.SearchProduct{
+    display: inline-block;
+    width: 100px;
+    margin-top: 10px;
+}
+.ShopIndex{
+    width: 400px;
+    padding: 10px;
+}
+.ShopIndex >div> input{
+     border-radius: 10px;
+    padding: 6px;
+}
+.ShopIndex>button{
+    border-radius: 10px;
+    margin: 0 auto;
 }

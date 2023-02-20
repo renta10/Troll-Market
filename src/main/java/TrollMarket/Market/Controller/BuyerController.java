@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 @RequestMapping("/buyer")
 public class BuyerController {
-    private BuyerService buyerService;
 
     @InitBinder
     public void initBinder(WebDataBinder dataBinder) {

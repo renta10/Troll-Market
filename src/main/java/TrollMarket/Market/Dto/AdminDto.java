@@ -1,5 +1,7 @@
 package TrollMarket.Market.Dto;
 
+import javax.validation.constraints.NotNull;
+
 public class AdminDto {
     private String username;
     private String password;

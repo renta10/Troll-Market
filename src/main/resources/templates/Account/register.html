@@ -13,7 +13,10 @@
         th:action="@{/account/saveAccount}"
         th:object="${account}">
 
-    <div th:errors="*{username}" ></div>
+    <div
+        th:errors="*{username}" >
+    </div>
+
     <label>
         <input type="text" th:field="*{username}" placeholder="Username" />
     </label>
@@ -22,14 +25,15 @@
         <input type="hidden" th:field="*{role}" />
     </label>
 
+    <div th:errors="*{password}" ></div>
     <label>
         <input type="password" th:field="*{password}" placeholder="Password" />
     </label>
-
+    <div th:errors="*{firstName}" ></div>
     <label>
         <input type="text" th:field="*{firstName}" placeholder="First Name" />
     </label>
-
+    <div th:errors="*{lastName}" ></div>
     <label>
         <input type="text" th:field="*{lastName}" placeholder="Last Name" />
     </label>
@@ -37,7 +41,7 @@
     <label>
         <input type="text" th:field="*{phoneNUmber}" placeholder="Phone Number" />
     </label>
-
+    <div th:errors="*{address}" ></div>
     <label>
         <textarea  th:field="*{address}" placeholder="Address"></textarea>
     </label>

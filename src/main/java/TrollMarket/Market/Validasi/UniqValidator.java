@@ -16,8 +16,6 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface UniqValidator {
     String message();
-
     Class<?>[] groups() default {};
-
     Class<? extends Payload>[] payload() default {};
 }

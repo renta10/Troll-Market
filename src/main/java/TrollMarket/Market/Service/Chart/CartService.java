@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface CartService {
     void save(CartDto cartDto, String username );
-    List<CartDtoShow>cartDtoShow();
+//    List<CartDtoShow>cartDtoShow(String username);
     void deleteCart(Integer id);
     void puchesAll(String name);
 

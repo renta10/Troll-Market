@@ -1,36 +1,36 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>addCart</title>
-</head>
-<body>
-<div class="form-merchandise-container">
+<!--<!DOCTYPE html>-->
+<!--<html lang="en" xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>addCart</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--<div class="form-merchandise-container">-->
 
-    <form class="form-merchandise" th:action="@{/cart/saveCart}" th:object="${cart}" method="post">
+<!--    <form class="form-merchandise" th:action="@{/cart/saveCart}" th:object="${cart}" method="post">-->
 
-        <div>
-            <label></label>
-            <input type="hidden" th:field="*{id}">
-        </div>
+<!--        <div>-->
+<!--            <label></label>-->
+<!--            <input type="hidden" th:field="*{id}">-->
+<!--        </div>-->
 
-        <div>
-            <label class="column-form-merchandise" > Name</label>
-            <input type="hidden" th:field="*{buyerId}">
-        </div>
+<!--        <div>-->
+<!--            <label class="column-form-merchandise" > Name</label>-->
+<!--            <input type="hidden" th:field="*{buyerId}">-->
+<!--        </div>-->
 
-        <div>
-            <label class="column-form-merchandise"  >Category</label>
-            <input type="hidden" th:field="*{productId}">
-        </div>
+<!--        <div>-->
+<!--            <label class="column-form-merchandise"  >Category</label>-->
+<!--            <input type="hidden" th:field="*{productId}">-->
+<!--        </div>-->
 
-        <div >
-            <button type="submit">Save</button>
-        </div>
+<!--        <div >-->
+<!--            <button type="submit">Save</button>-->
+<!--        </div>-->
 
-    </form>
-    <a th:href="@{/merchandise/showProduct(principal.Username)}"> <button class="button-Cancel">cancel</button></a>
-</div>
+<!--    </form>-->
+<!--    <a th:href="@{/merchandise/showProduct(principal.Username)}"> <button class="button-Cancel">cancel</button></a>-->
+<!--</div>-->
 
-</body>
-</html>
+<!--</body>-->
+<!--</html>-->

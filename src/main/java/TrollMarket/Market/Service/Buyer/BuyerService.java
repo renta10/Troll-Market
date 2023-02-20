@@ -6,5 +6,5 @@ import TrollMarket.Market.Entity.Buyer;
 import java.util.List;
 
 public interface BuyerService {
-    void addBalance(String name, Double addBalance);
+     void addBalance(String name, String addBalance);
 }

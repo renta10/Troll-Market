@@ -1,14 +1,24 @@
 package TrollMarket.Market.Dto;
 
 import TrollMarket.Market.Validasi.UniqValidator;
+import org.hibernate.validator.constraints.Length;
+
+import javax.validation.constraints.NotNull;
 
 public class RegisterDto {
+    @NotNull(message = "tidak boleh kosong")
     @UniqValidator(message = "Username dah ada cok")
     private String username;
+    @Length(min = 8,message = "minimun 8 chart")
+    @NotNull(message = "password Not Null")
     private String password;
+    @NotNull(message = "choose your role")
     private String role;
+    @NotNull(message = "firstname Not Null")
     private String firstName;
+    @NotNull(message = "lastname Not Null")
     private String lastName;
+    @NotNull(message = " Address Not Null")
     private String address;
     private String phoneNUmber;
 

@@ -7,8 +7,11 @@ import TrollMarket.Market.Service.Buyer.BuyerService;
 import TrollMarket.Market.Service.Seller.SellerService;
 import TrollMarket.Market.Utility.Dropdown;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
@@ -26,6 +29,12 @@ public class AccountController {
     @Autowired
     SellerService sellerService;
 
+    @InitBinder
+    public void initBinder(WebDataBinder dataBinder) {
+        StringTrimmerEditor stringTrimmerEditor = new StringTrimmerEditor(true);
+        dataBinder.registerCustomEditor(String.class, stringTrimmerEditor);
+    }
+
 
     @GetMapping("/addAccount")
     public String register(@RequestParam("role")String role, Model model){
@@ -35,7 +44,6 @@ public class AccountController {
         return "Account/register";
 
     }
-
     @GetMapping("/showMyLoginPage")
     public String showMyLoginPage(Model model) {
         List<Dropdown>roleDropdown = Dropdown.getRoleDropdown();
@@ -43,13 +51,14 @@ public class AccountController {
         return "Account/loginPage";
     }
 
-
     @PostMapping("/saveAccount")
-    public String saveAccount(@Valid @ModelAttribute("account") RegisterDto registerDto /*BindingResult bindingResult*/ ){
+    public String saveAccount(@Valid @ModelAttribute("account") RegisterDto registerDto, BindingResult bindingResult ){
+        if(bindingResult.hasErrors()){
+            return "Account/register";
+        }
         accountService.registerAccount(registerDto);
         return "redirect:/account/showMyLoginPage";
     }
-
 
     @GetMapping("/addAccountAdmin")
     public String registerAdmin(@RequestParam("role")String role, Model model){

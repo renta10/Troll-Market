@@ -15,7 +15,6 @@ public class UniqValidatorImpl implements ConstraintValidator<UniqValidator,Stri
         this.accountService = accountService;
     }
 
-
     @Override
     public boolean isValid(String username, ConstraintValidatorContext context) {
         return !this.accountService.cekExistingAccount(username);

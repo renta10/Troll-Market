@@ -18,8 +18,7 @@ public class ShipmentController {
 
     @Autowired
     ShipmentService shipmentService;
-    @Autowired
-    private ShipmentRepository shipmentRepository;
+
 
     @GetMapping("/addShipment")
     public String addShimpmet(Model model){

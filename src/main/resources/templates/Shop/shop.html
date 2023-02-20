@@ -9,22 +9,23 @@
   <nav th:replace="~{template.html :: navigation}"></nav>
 
   <div>
-    <form th:action="@{/shop/shopIndex}">
+    <form class="ShopIndex" th:action="@{/shop/shopIndex}">
 
       <div>
-        <label>Name</label>
+        <label class="SearchProduct">Name</label>
         <input name="key1">
       </div>
 
       <div>
-        <label>Category</label>
+        <label class="SearchProduct">Category</label>
         <input name="key2">
       </div>
 
       <div>
-        <label>Description</label>
+        <label class="SearchProduct">Description</label>
         <input name="key3">
       </div>
+
       <button type="submit">Search</button>
     </form>
 
@@ -53,7 +54,9 @@
           </span>
 
           <span class="button-merchandise">
-            <a  th:href="@{cart/addtoCart(id=${d.id})}"><button>Add to Chart</button></a>
+            <a th:href="@{/merchandise/infoProduct(id=${d.id})}">
+              <button class="cartt">Add to Chart</button>
+            </a>
           </span>
 
         </td>
@@ -64,24 +67,39 @@
     </table>
   </div>
 
-  <form class="form-merchandise" th:action="@{/cart/saveCart}" th:object="${cart}" method="post">
+  <div class="AddToCart">
+    <form  th:action="@{/cart/saveCart}" th:object="${cart}" method="post">
 
-    <div>
-      <label></label>
-      <input type="hidden" th:field="*{id}">
-    </div>
+        <input type="hidden" th:field="*{id}">
 
+        <input type="hidden" th:field="*{productId}">
 
-    <div>
-      <label class="column-form-merchandise"  >Category</label>
-      <input type="hidden" th:field="*{productId}">
-    </div>
+        <input type="hidden" th:field="*{buyerId}">
 
+        <div>
+          <label class="popUPCart" >Quantity</label>
+          <input name="quantity" type="number" th:field="*{quantity}">
+        </div>
+
+        <div>
+          <label class="popUPCart">Shipment</label>
+          <select th:field="*{shipmentId}" >
+            <option th:value=null>Choose the shipment</option>
+            <option th:each="option : ${shipment}" th:value="${option.id}"
+                    th:text="${option.shipmentName}"/>
+          </select>
+        </div>
+
+      <div >
+        <button type="submit">Save</button>
+      </div>
+
+    </form>
     <div >
-      <button type="submit">Save</button>
+      <button class="cancelCart">cancel</button>
     </div>
+  </div>
 
-  </form>
 
 
   <div class="info-container">
@@ -95,7 +113,7 @@
     </div>
 
     <div>
-      <span class="spanInfo" >Description</span>
+      <span class="spanInfo">Description</span>
       <span></span>
     </div>
 
@@ -132,11 +150,41 @@
 
     const btnInfo = document.querySelectorAll(".info");
     if (btnInfo != null) {
-      btnInfo.forEach(btn => {
+      btnInfo.forEach( btn => {
         btn.addEventListener("click", (e) => {
           e.preventDefault(); //  supaya pas di click  tidak web tidak me reaload
           const url = btn.parentElement.href;
           getData(url)
+        })
+      })
+
+    }
+
+
+    async function cartData(url){
+      const response = await fetch(url);
+      const dataCart = await response.json();
+      const cartProduct = document.querySelector(".AddToCart");
+
+      cartProduct.style.transform = "scale(1)";
+
+      let cancel = document.querySelector(".cancelCart")
+      cancel.onclick = function (){
+        cartProduct.style.transform = "scale(0)";
+      }
+
+      cartProduct.children[0].children[2].value = dataCart.id;
+      // cartProduct.children[3].value = dataCart.;
+
+    }
+
+    const btnaddCart = document.querySelectorAll(".cartt");
+    if (btnaddCart != null) {
+      btnaddCart.forEach( btn => {
+        btn.addEventListener("click", (e) => {
+          e.preventDefault(); //  supaya pas di click  tidak web tidak me reaload
+          const url = btn.parentElement.href;
+          cartData(url)
         })
       })
 

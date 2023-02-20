@@ -31,10 +31,15 @@ public class ProfileController {
     }
 
     @PostMapping("/addBalance")
-    public String addBalance(@RequestParam String addbalances, Principal principal ){
-        Double doubleAddbalance = 0.0d;
-        doubleAddbalance = Double.valueOf(addbalances);
-        buyerService.addBalance(principal.getName(),doubleAddbalance);
+    public String addBalance(@RequestParam String addbalances, Principal principal, Model model ){
+        try{
+            buyerService.addBalance(principal.getName(),addbalances);
+        }catch (RuntimeException e){
+            model.addAttribute("error",e.getMessage());
+            ProfilDto profilDto = accountService.getUserProfile(principal.getName());
+            model.addAttribute("user",profilDto);
+            return "Profile/profilePage";
+        }
         return "redirect:/profile/showProfile";
     }
 

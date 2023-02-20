@@ -47,7 +47,7 @@ public class AuthenticationProviderWithRole implements AuthenticationProvider {
     }
 
     @Override
-    public boolean supports(Class<?> authentication) {
+    public boolean supports(Class<?> authentication){
         return authentication.equals(UsernamePasswordAuthenticationToken.class);
     }
 }
