@@ -24,6 +24,8 @@ public class ProfilDto {
 //    }
 
     public ProfilDto(String firstName, String lastName,  String role, String address, String balance) {
+        this.firstName = firstName;
+        this.LastName = lastName;
         this.name = firstName + "  " + lastName;
         this.role = role;
         this.address = address;

@@ -7,7 +7,7 @@ import TrollMarket.Market.Entity.Product;
 import java.util.List;
 
 public interface ProductService {
-    public void saveProduct(ProductDto productDto, String username);
+    public void saveProduct(ProductDto productDto, String username)throws Exception;
     List<ProductDtoshow> findProductByAccount(String Username);
     Product findByid(Integer id);
     void deleteById(Integer id, String username);

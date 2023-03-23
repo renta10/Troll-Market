@@ -94,7 +94,7 @@ public class AccountServiceImpl implements AccountService, UserDetailsService {
 
 
     @Override
-    public ProfilDto getUserProfile(String username) {
+    public ProfilDto getUserProfile(String username) throws Exception {
         Account account = accountRepository.findByUserName(username);
 
         if (account.getRole().equals("Buyer")){
@@ -110,8 +110,7 @@ public class AccountServiceImpl implements AccountService, UserDetailsService {
             return profilDto;
 
         }else {
-
-            return null;
+            throw new SomethingWrong("It's something wrong");
         }
     }
 

@@ -24,14 +24,14 @@ public class ProfileController {
     private BuyerService buyerService;
 
     @GetMapping("/showProfile")
-    public String getProfile(Principal principal, Model model){
+    public String getProfile(Principal principal, Model model)throws Exception{
        ProfilDto profilDto = accountService.getUserProfile(principal.getName());
        model.addAttribute("user",profilDto);
        return"/Profile/profilePage";
     }
 
     @PostMapping("/addBalance")
-    public String addBalance(@RequestParam String addbalances, Principal principal, Model model ){
+    public String addBalance(@RequestParam String addbalances, Principal principal, Model model )throws Exception{
         try{
             buyerService.addBalance(principal.getName(),addbalances);
         }catch (RuntimeException e){

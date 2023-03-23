@@ -30,7 +30,7 @@ public class MerchandiseController {
     }
 
     @PostMapping("/saveProduct")
-    public String saveProduct(@ModelAttribute("addProduct")ProductDto productDto,Principal principal){
+    public String saveProduct(@ModelAttribute("addProduct")ProductDto productDto,Principal principal)throws Exception{
         productService.saveProduct(productDto,principal.getName());
         return "redirect:/merchandise/showProduct";
     }

@@ -24,7 +24,7 @@ public class ProductServiceImpl implements ProductService {
     SellerRepository sellerRepository;
 
     @Override
-    public void saveProduct(ProductDto productDto, String username) {
+    public void saveProduct(ProductDto productDto, String username) throws Exception {
         try{
             Seller seller = sellerRepository.findByAccount_UserName(username);
             Product product = new Product(
